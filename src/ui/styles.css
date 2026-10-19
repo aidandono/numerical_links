@@ -1,0 +1,270 @@
+:root {
+  --bg: #ffd23f;
+  --ink: #2b1d00;
+  --muted: #6b5410;
+  --cell: #fff8dc;
+  --paper: #fff;
+  --error: #c1121f;
+  --outline: 2.5px solid var(--ink);
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+}
+
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+h1 {
+  margin: 0;
+  font-family: 'Lilita One', 'Nunito', system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 2rem;
+  letter-spacing: 0.01em;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+select,
+button,
+textarea {
+  font: inherit;
+  font-weight: 800;
+  color: var(--ink);
+  background: var(--paper);
+  border: var(--outline);
+  border-radius: 12px;
+  padding: 8px 14px;
+}
+
+select,
+button {
+  box-shadow: 0 3px 0 var(--ink);
+}
+
+button {
+  cursor: pointer;
+  transition: transform 0.06s, box-shadow 0.06s;
+}
+
+button:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+:focus-visible {
+  outline: 3px solid var(--paper);
+  outline-offset: 2px;
+}
+
+.custom {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--muted);
+}
+
+textarea {
+  font-family: ui-monospace, monospace;
+  font-weight: 500;
+  line-height: 1.2;
+  background: var(--cell);
+}
+
+.error {
+  color: var(--error);
+  margin: 0;
+}
+
+.board-wrap {
+  position: relative;
+}
+
+.board {
+  display: block;
+  width: 100%;
+  max-height: 80vh;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.cell {
+  fill: var(--cell);
+  stroke: var(--ink);
+  stroke-width: 3;
+}
+
+.solved {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: rgb(255 210 63 / 0.6);
+  font-family: 'Lilita One', 'Nunito', system-ui, sans-serif;
+  font-size: 3rem;
+}
+
+.solved p {
+  margin: 0;
+  color: var(--paper);
+  -webkit-text-stroke: 3px var(--ink);
+  paint-order: stroke fill;
+  text-shadow: 0 4px 0 var(--ink);
+}
+
+.solved button {
+  font-family: 'Nunito', system-ui, sans-serif;
+  font-size: 1.1rem;
+  background: #ff4d6d;
+  color: var(--paper);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.tabs button.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.level-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: 10px;
+}
+
+.level-btn {
+  padding: 12px 4px;
+  font-size: 1.3rem;
+}
+
+.level-btn.done {
+  background: #06d6a0;
+}
+
+.pack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.pack-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  padding: 12px 14px;
+  text-align: left;
+}
+
+.pack-card:nth-child(4n + 1) {
+  background: #06d6a0;
+}
+
+.pack-card:nth-child(4n + 2) {
+  background: #4cc9f0;
+}
+
+.pack-card:nth-child(4n + 3) {
+  background: #ff4d6d;
+}
+
+.pack-card:nth-child(4n + 4) {
+  background: #c77dff;
+}
+
+.pack-name {
+  font-family: 'Lilita One', 'Nunito', system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+}
+
+.pack-count {
+  font-size: 0.9rem;
+}
+
+.pack-bar {
+  height: 8px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.pack-bar span {
+  display: block;
+  height: 100%;
+  background: var(--ink);
+}
+
+.pack-card.complete .pack-name::after {
+  content: ' ✓';
+}
+
+.pack-view {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pack-title {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.loading {
+  margin: 0;
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.level-info {
+  color: var(--muted);
+}
